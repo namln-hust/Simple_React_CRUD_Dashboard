@@ -11,7 +11,7 @@ export default function LoginPage() {
 		// Check login info
 
 		// Redirect to home page
-		navigate('/home');
+		navigate('/home/village');
 	};
 
 	return (
