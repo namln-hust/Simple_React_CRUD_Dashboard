@@ -5,19 +5,19 @@ export default function VillageModal({
 	modalVisible,
 	handleSubmit,
 	hideModal,
-	villageObject
+	village,
+	handleVillageChange,
+	reloadData
 }) {
-    const emptyVillageInfo = { name: '' }
-
 	const [confirmLoading, setConfirmLoading] = useState(false);
-	const [village, setVillage] = useState(villageObject || emptyVillageInfo);
 
 	const handleOk = async () => {
 		setConfirmLoading(true);
-		const result = await handleSubmit(village);
-        console.log(result);
+		const result = await handleSubmit();
+		if (result.success) hideModal();
+		else alert(result.err);
 		setConfirmLoading(false);
-		hideModal();
+		reloadData();
 	};
 
 	const handleCancel = () => {
@@ -25,7 +25,7 @@ export default function VillageModal({
 	};
 
 	const handleNameInput = (e) => {
-		setVillage({ ...village, name: e.target.value });
+		handleVillageChange({ ...village, name: e.target.value });
 	};
 
 	return (
@@ -35,11 +35,12 @@ export default function VillageModal({
 			onOk={handleOk}
 			confirmLoading={confirmLoading}
 			onCancel={handleCancel}
+			animation={false}
 		>
-			<form action={handleOk}>
+			<form>
 				<input
 					type="text"
-					value={village.name}
+					value={village ? village.name : ''}
 					onInput={handleNameInput}
 				/>
 			</form>

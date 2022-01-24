@@ -1,9 +1,11 @@
 .loading-spinner {
-    height: 100% !important;
-    margin: 20px 0;
+    min-height: 332px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add {
     margin-bottom: 20px;
-    padding: 30px 50px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
+    float: right;
 }
